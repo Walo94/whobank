@@ -3,7 +3,7 @@ import { supabase } from './supabaseClient';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-const API_URL = "/api";
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
 /**
  * Procesa un archivo PDF subido por el usuario.
