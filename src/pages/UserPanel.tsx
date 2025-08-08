@@ -7,8 +7,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/services/supabaseClient";
 import { getHistory } from "@/services/api";
-import { FileText, Clock, Zap, RotateCw } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { FileText, Clock, RotateCw } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 // Definimos un tipo para los items del historial
@@ -45,7 +45,7 @@ const UserPanel = () => {
             const [profileResponse, historyResponse] = await Promise.all([
                 supabase
                     .from('profiles')
-                    .select('daily_conversions_count')
+                    .select('daily_conversions_count, conversion_tokens')
                     .eq('id', user.id)
                     .single(),
                 getHistory()
@@ -55,7 +55,7 @@ const UserPanel = () => {
             const { data: profileData, error: profileError } = profileResponse;
             if (profileError) throw profileError;
             if (profileData) {
-                setTokens(100 - profileData.daily_conversions_count);
+                setTokens(profileData.conversion_tokens - profileData.daily_conversions_count);
             }
 
             // Procesar el historial
