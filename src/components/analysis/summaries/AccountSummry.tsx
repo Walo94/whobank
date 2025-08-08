@@ -4,16 +4,16 @@ import { AccountData } from "@/types/analysis";
 
 // Función de ayuda
 const formatCurrency = (value: number | null | undefined, showZero: boolean = false) => {
-    if (value === null || value === undefined) return "";
-    if (!showZero && value === 0) return "";
-    return `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (value === null || value === undefined) return "";
+  if (!showZero && value === 0) return "";
+  return `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 };
 
-interface BbvaSummaryProps {
+interface AccountSummaryProps {
     account: AccountData;
 }
 
-const BbvaSummary = ({ account }: BbvaSummaryProps) => {
+const AccountSummary = ({ account }: AccountSummaryProps) => {
     return (
         <div className="grid md:grid-cols-4 gap-6">
             <Card className="shadow-card">
@@ -36,4 +36,4 @@ const BbvaSummary = ({ account }: BbvaSummaryProps) => {
     );
 };
 
-export default BbvaSummary;
+export default AccountSummary;

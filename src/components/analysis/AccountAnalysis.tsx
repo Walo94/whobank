@@ -1,14 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Wallet, Globe } from "lucide-react";
 import { AnalysisResponse } from "@/types/analysis";
-import BanorteSummary from "./summaries/BanorteSummary";
+import AccountSummary from "./summaries/AccountSummry";
 import TransactionTable from "./tables/TransactionTable";
 
-interface BanorteAnalysisProps {
+interface AccountAnalysisProps {
   data: AnalysisResponse;
 }
 
-const BanorteAnalysis = ({ data }: BanorteAnalysisProps) => {
+const AcccountAnalysis = ({ data }: AccountAnalysisProps) => {
   return (
     <div className="flex flex-col gap-12">
       {data.cuentas.map((account, index) => (
@@ -28,7 +28,7 @@ const BanorteAnalysis = ({ data }: BanorteAnalysisProps) => {
           </CardHeader>
           <CardContent className="flex flex-col gap-8">
             {/* Llama al componente de resumen modularizado */}
-            <BanorteSummary account={account} />
+            <AccountSummary account={account} />
 
             {/* Llama al componente de tabla modularizado */}
             <TransactionTable transactions={account.transacciones} account={account} />
@@ -39,4 +39,4 @@ const BanorteAnalysis = ({ data }: BanorteAnalysisProps) => {
   );
 };
 
-export default BanorteAnalysis;
+export default AcccountAnalysis;

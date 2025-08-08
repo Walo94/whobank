@@ -5,6 +5,7 @@ import Register from "@/pages/Register";
 import Plans from "@/pages/Plans";
 import UserPanel from "@/pages/UserPanel";
 import NotFound from "@/pages/NotFound";
+import Contact from "@/pages/Contact";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 const AppRoutes = () => {
@@ -14,7 +15,8 @@ const AppRoutes = () => {
       <Route path="/" element={<Index />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/plans" element={<Plans />} />
+      <Route path="/contact" element = {<Contact />} />
+      
 
       {/* --- Rutas Protegidas --- */}
       {/* Envolvemos el componente UserPanel con nuestro ProtectedRoute */}

@@ -75,10 +75,8 @@ export const exportToExcel = (
   const dataToExport = transactions.map(t => ({
     'Fecha': t.fecha,
     'Descripción': t.descripcion,
-    'Categoría': t.categoria || 'Sin Categoría',
-    'Tipo de Movimiento': t.tipo_movimiento,
-    'Ingreso ($)': t.deposito,
-    'Gasto ($)': t.retiro,
+    'Depósitos ($)': t.deposito,
+    'Retiros ($)': t.retiro,
     'Saldo ($)': t.saldo
   }));
 
@@ -109,19 +107,16 @@ export const exportToExcel = (
   // 4. Ajustamos el ancho de las columnas para una mejor visualización.
   worksheet['!cols'] = [
     { wch: 20 }, // Saldo/Depositos etc (Ancho para la primera columna del resumen)
-    { wch: 15 }, // Montos del resumen
-    { wch: 80 }, // Descripción (columna más ancha de la tabla)
-    { wch: 25 }, // Categoría
-    { wch: 20 }, // Tipo de Movimiento
+    { wch: 150 }, // Montos del resumen
+    { wch: 15 }, // Descripción (columna más ancha de la tabla)
     { wch: 15 }, // Ingreso
     { wch: 15 }, // Gasto
     { wch: 15 }, // Saldo
-    { wch: 10 }, // Modificado
   ];
   // Reajuste del ancho de las primeras columnas si hay resumen.
   if (summaryData) {
       worksheet['!cols'][0] = { wch: 20 };
-      worksheet['!cols'][1] = { wch: 15 };
+      worksheet['!cols'][1] = { wch: 80 };
   } else {
       // Si no hay resumen, las columnas de la tabla empiezan desde el principio.
       worksheet['!cols'] = [

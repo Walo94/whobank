@@ -173,14 +173,7 @@ const UserPanel = () => {
                                     <h3 className="font-semibold text-sm text-muted-foreground">Plan Actual</h3>
                                     <div className="flex items-center gap-4">
                                         <p className="text-2xl font-bold">{displayPlanName}</p>
-                                        {userProfile && userProfile.plan_activo === 'gratis' && (
-                                            <Link to="/plans">
-                                                <Button variant="outline" size="sm">
-                                                    <Zap className="w-4 h-4 mr-2" />
-                                                    Cambiar a Premium
-                                                </Button>
-                                            </Link>
-                                        )}
+                                        
                                     </div>
                                 </div>
                             </div>

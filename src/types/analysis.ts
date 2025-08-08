@@ -7,8 +7,6 @@ export interface Transaction {
   retiro: number;
   deposito: number;
   saldo: number | null;
-  tipo_movimiento: 'ingreso' | 'gasto' | 'informativo';
-  categoria: string;
 }
 
 // Interfaz para UNA SOLA cuenta, aplicable a ambos bancos.

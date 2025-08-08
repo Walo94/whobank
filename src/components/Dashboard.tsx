@@ -12,7 +12,7 @@ import { useAuth } from "@/context/AuthContext";
 type AnalysisData = any;
 
 const Dashboard = () => {
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
@@ -180,7 +180,7 @@ const Dashboard = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-success/10 rounded-lg mb-4">
                 <BarChart3 className="w-6 h-6 text-success" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Análisis Automático</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Procesamiento Automático</h3>
               <p className="text-muted-foreground text-sm">Categorización inteligente de gastos e ingresos</p>
             </CardContent>
           </Card>
@@ -207,55 +207,29 @@ const Dashboard = () => {
         </div>
 
         {/* Sección de Planes - Condicional y responsiva */}
-        {(!user || (user && profile?.plan_activo === 'gratis')) && (
+        {/* Se muestra solo a usuarios no registrados (invitados) */}
+        {!user && (
           <div className="mt-16 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Elige tu Acceso</h2>
             <p className="text-muted-foreground mb-8">Comienza gratis y mejora cuando lo necesites.</p>
-
-            <div className={`grid grid-cols-1 gap-8 ${!user ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
-              {/* VISTA PARA INVITADOS */}
-              {!user && (
-                <>
-                  <Card className="text-center p-6 shadow-card border-2 border-border">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <FileText className="w-8 h-8 text-muted-foreground mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-foreground mb-2">Prueba Anónima</h3>
-                      <p className="text-muted-foreground text-sm mb-6 flex-grow">1 documento cada 24 horas sin registrarse.</p>
-                      <div className="text-3xl font-bold text-foreground">Gratis</div>
-                    </CardContent>
-                  </Card>
-                  <Card className="text-center p-6 shadow-card border-2 border-border">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <UserPlus className="w-8 h-8 text-primary mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-foreground mb-2">Cuenta Gratuita</h3>
-                      <p className="text-muted-foreground text-sm mb-6 flex-grow">3 documentos gratis cada 24 horas y guarda tu historial.</p>
-                      <Link to="/register"><Button>Registrarse Gratis</Button></Link>
-                    </CardContent>
-                  </Card>
-                </>
-              )}
-
-              {/* VISTA PARA USUARIOS CON PLAN GRATUITO */}
-              {user && profile?.plan_activo === 'gratis' && (
-                <Card className="text-center p-6 shadow-card border-2 border-border">
-                  <CardContent className="pt-6 flex flex-col h-full">
-                    <FileText className="w-8 h-8 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-foreground mb-2">Plan Actual: Free</h3>
-                    <p className="text-muted-foreground text-sm mb-6 flex-grow">3 documentos cada 24 horas y acceso a tu historial.</p>
-                    <div className="text-3xl font-bold text-foreground">Gratis</div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* TARJETA PREMIUM (SE MUESTRA A AMBOS) */}
-              <Card className="text-center p-6 shadow-card border-2 border-primary/50">
+            
+            {/* El grid ahora es de 2 columnas en desktop para centrar las tarjetas */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card className="text-center p-6 shadow-card border-2 border-border">
                 <CardContent className="pt-6 flex flex-col h-full">
-                  <Crown className="w-8 h-8 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {user ? 'Hazte Premium' : 'Planes Premium'}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-6 flex-grow">Más conversiones, análisis avanzados y soporte prioritario.</p>
-                  <Link to="/plans"><Button>Ver Planes</Button></Link>
+                  <FileText className="w-8 h-8 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Prueba Anónima</h3>
+                  <p className="text-muted-foreground text-sm mb-6 flex-grow">3 documentos cada 24 horas sin registrarse.</p>
+                  <div className="text-3xl font-bold text-foreground">Gratis</div>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center p-6 shadow-card border-2 border-border">
+                <CardContent className="pt-6 flex flex-col h-full">
+                  <UserPlus className="w-8 h-8 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Cuenta Gratuita</h3>
+                  <p className="text-muted-foreground text-sm mb-6 flex-grow">7 documentos gratis cada 24 horas y guarda tu historial.</p>
+                  <Link to="/register"><Button>Registrarse Gratis</Button></Link>
                 </CardContent>
               </Card>
             </div>

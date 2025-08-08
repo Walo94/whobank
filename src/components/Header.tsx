@@ -25,18 +25,24 @@ const Header = () => {
   return (
     <header className="w-full bg-card border-b border-border shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo - Ahora siempre visible y centrado en el espacio disponible */}
-        <div className="flex-1">
+        {/* Logo con indicador Beta */}
+        <div className="flex-1 flex items-center">
           <Link to="/" className="text-5xl font-bold tracking-tighter">
-            {/* Se eliminan las clases 'hidden' para que el logo completo se vea siempre */}
-            <span className="text-primary animate-pulse hover:scale-110 transition-transform inline-block">W</span>
-            <span className="text-secondary animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.1s' }}>h</span>
-            <span className="text-accent animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.2s' }}>o</span>
-            <span className="text-success animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.3s' }}>B</span>
-            <span className="text-warning animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.4s' }}>a</span>
-            <span className="text-destructive animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.5s' }}>n</span>
-            <span className="text-primary animate-pulse hover:scale-110 transition-transform inline-block" style={{ animationDelay: '0.6s' }}>k</span>
+            {/* Se quita el efecto de pulso de las letras */}
+            <span className="text-primary">W</span>
+            <span className="text-secondary">h</span>
+            <span className="text-accent">o</span>
+            <span className="text-success">B</span>
+            <span className="text-warning">a</span>
+            <span className="text-destructive">n</span>
+            <span className="text-primary">k</span>
           </Link>
+          {/* Indicador Beta con la animación */}
+          <span 
+            className="ml-3 bg-primary/20 text-primary text-sm font-semibold px-3 py-1 rounded-full animate-pulse"
+          >
+            Beta
+          </span>
         </div>
 
         {/* --- Menú de Hamburguesa para Móviles --- */}
@@ -63,14 +69,15 @@ const Header = () => {
             </>
           ) : (
             <>
+              {/* Opción de Contacto agregada */}
+              <Link to="/contact">
+                <Button variant="ghost" size="sm">Contacto</Button>
+              </Link>
               <Link to="/register">
                 <Button variant="ghost" size="sm">Registro</Button>
               </Link>
               <Link to="/login">
                 <Button variant="outline" size="sm">Iniciar Sesión</Button>
-              </Link>
-              <Link to="/plans">
-                <Button variant="secondary" size="sm">Planes</Button>
               </Link>
             </>
           )}
@@ -98,6 +105,10 @@ const Header = () => {
             ) : (
               // Vista para invitado en móvil
               <>
+                {/* Opción de Contacto agregada para móvil */}
+                <Link to="/contact" onClick={toggleMenu}>
+                  <Button variant="ghost" className="w-full justify-start">Contacto</Button>
+                </Link>
                 <Link to="/register" onClick={toggleMenu}>
                   <Button variant="ghost" className="w-full justify-start">Registro</Button>
                 </Link>

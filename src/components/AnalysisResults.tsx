@@ -8,6 +8,9 @@ import BanamexAnalysis from "./analysis/BanamexAnalysis";
 import BanbajioAnalysis from "./analysis/BanbajioAnalysis";
 import BbvaAnalysis from './analysis/BbvaAnalysis';
 import BanorteAnalysis from './analysis/BanorteAnalysis';
+import SantanderAnalysis from './analysis/SantanderAnalysis';
+import ScotiaBankAnalysis from './analysis/ScotiaBankAnalysis';
+import AcccountAnalysis from './analysis/AccountAnalysis';
 
 // --- PROPS DEL COMPONENTE ---
 interface AnalysisResultsProps {
@@ -56,10 +59,7 @@ const AnalysisResults: React.FC<AnalysisResultsProps> = ({ data, onNewAnalysis }
           presentación al componente específico de cada banco. 
         */}
         <div className="mt-8">
-          {data.banco === 'banamex' && <BanamexAnalysis data={data} />}
-          {data.banco === 'banbajio' && <BanbajioAnalysis data={data} />}
-          {data.banco === 'bbva' && <BbvaAnalysis data={data} />}
-          {data.banco === 'banorte' && <BanorteAnalysis data={data} />}
+          { <AcccountAnalysis data={data} />}
         </div>
         
       </div>

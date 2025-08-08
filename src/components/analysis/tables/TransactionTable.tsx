@@ -27,7 +27,6 @@ import {
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  Save,
   AlertTriangle
 } from "lucide-react";
 import { useState, useMemo } from "react";
